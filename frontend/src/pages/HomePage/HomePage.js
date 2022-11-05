@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { API_KEY } from "../../API_KEYS/API_KEY";
 import VidMapper from "../../components/VidMapper";
+import SearchBar from "../../components/SearchBar";
 
 const HomePage = () => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
@@ -270,6 +271,7 @@ const HomePage = () => {
 
   return (
       <div>
+        <SearchBar />
         <VidMapper vidArray={videos} />
       </div>
   );
