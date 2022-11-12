@@ -22,6 +22,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        {/* Setup route to a video page */}
       </Routes>
       <Footer />
     </div>

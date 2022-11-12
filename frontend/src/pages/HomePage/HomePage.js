@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { API_KEY } from "../../API_KEYS/API_KEY";
-import VidMapper from "../../components/VidMapper";
 import SearchBar from "../../components/SearchBar";
+import VidMapper from "../../components/VidMapper";
 
-class HomePage extends React.Component {
+
+const HomePage = (props) => {
   // The "user" value from this Hook contains the decoded logged in user information (username, first name, id)
   // The "token" value is the JWT token that you will send in the header of any request requiring authentication
   //TODO: Add an AddCars Page to add a car for a logged in user's garage
   
-//   const [user, token] = useAuth();
+//  const [user, token] = useAuth();
 //   const [cars, setCars] = useState([]);
 
 //   useEffect(() => {
@@ -41,20 +42,25 @@ class HomePage extends React.Component {
 //   );
 // };
 
+const [videos, setVideos] = useState([]); // videos = variable, setVideos is the controller, useState is the "Engine"
 
+useEffect(() =>{
+    getSearchResults()
+}, [])
 
-
-   handleSubmit = async(searchTerm)=>{
+   async function getSearchResults(searchTerm="bob ross"){
     const response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&part=snippet&maxResults=5&type=video&key=${API_KEY}`)
+    console.log(response.data.items)
+    setVideos(response.data.items) // this is sthe same as saying videos = response.data.items
     
-    console.log(response);
 };
 
-render(){
+
+{
   return (
       <div>
-        <SearchBar onFormSubmit={this.handleSubmit}/>
-        {/* <VidMapper vidArray={videos} /> */}
+        <SearchBar getSearchResults={getSearchResults}/>
+        <VidMapper videos={videos}/>
       </div>
   );
 }

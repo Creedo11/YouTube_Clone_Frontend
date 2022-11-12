@@ -1,10 +1,10 @@
 import React from 'react';
 import VidPresenter from './VidPresenter';
 
-const VidMapper = ({vidArray}) => {
+const VidMapper = ({videos}) => {
     return (
         <ul>
-            {vidArray.map(el => <VidPresenter key={el.id.videoId} video = {el}/>)}
+            {videos && videos.map(el => <VidPresenter key={el.id.videoId} video={el}/>)}
         </ul>
       );
 }
