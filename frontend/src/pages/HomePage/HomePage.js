@@ -48,7 +48,7 @@ useEffect(() =>{
     getSearchResults()
 }, [])
 
-   async function getSearchResults(searchTerm="bob ross"){
+   async function getSearchResults(searchTerm="miles morales"){
     const response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${searchTerm}&part=snippet&maxResults=5&type=video&key=${API_KEY}`)
     console.log(response.data.items)
     setVideos(response.data.items) // this is sthe same as saying videos = response.data.items
